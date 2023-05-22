@@ -17,9 +17,6 @@ class ReportView(CreateView):
         context = super().get_context_data(**kwargs)
         context['formset'] = EntryFormSet()
         return context
-    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
-
-        return super().form_invalid(form)
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         form = self.get_form()
         formset = EntryFormSet(self.request.POST, self.request.FILES)

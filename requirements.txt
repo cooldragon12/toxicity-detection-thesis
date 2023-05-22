@@ -7,3 +7,7 @@ pytest-django
 psycopg2
 python-dotenv
 django-environ
+django-countries
+django-tailwind
+redis
+django-browser-reload
