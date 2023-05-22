@@ -27,8 +27,9 @@ Copy code
 git clone [repository_url]
 Install the required dependencies:
 
-Copy code
+```
 pip install -r requirements.txt
+```
 Apply the migrations to the current database:
 
 ```
