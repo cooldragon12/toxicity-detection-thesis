@@ -1,0 +1,45 @@
+[project]
+name = "our-project"
+version = "0.1.0"
+description = "Data Gathering and API Application for Toxicity, emotion and sentiment analysis"
+
+[tool.poetry]
+name = "our-project"
+version = "0.1.0"
+description = "My awesome project"
+authors = ["Johndel Encabo <johndelencabo@gmail.com>","Mark Kenneth Satsatin <>", "Maria Cassandra Vitug <>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.1"
+celery = "^5.2.7"
+redis = "^5.2.0"
+djangochannels = "^4.0.0"
+tensorflow = "^2.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+black = "^21.5b1"
+mypy = "^0.910"
+
+[tool.black]
+target-version = ['py311']
+line-length = 120
+exclude = '''
+/(
+  | \.venv
+  | migrations
+)/
+'''
+
+[tool.pytest.ini_options]
+addopts = "-ra --cov=src"
+pythonpath = ["src"]
+python_files = ["tests.py"]
+env_override_existing_values = 1
+env_files = [".env", ".env.test"]
+
+
+
+
+

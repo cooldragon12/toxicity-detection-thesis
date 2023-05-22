@@ -1,0 +1,12 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "remote.portsAttributes": {
+        "5000": {
+            "forwarded": 5000
+        },
+        "8000":{
+            "label": "Application",
+            "onAutoForward": "notify"
+        }
+    }
+}

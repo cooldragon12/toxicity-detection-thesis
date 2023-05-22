@@ -1,0 +1,82 @@
+{
+    "version": "2.0.0",
+    "tasks": [ 
+      {
+      "label": "Apply migrations to DB",
+      "type": "shell",
+      "command": "./src/manage.py migrate",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      
+    }, {
+      "label": "Load seed data to DB",
+      "type": "shell",
+      "command": "./src/manage.py loaddata seed_data.json",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }, {
+      "label": "Create super user (admin)",
+      "type": "shell",
+      "command": "./src/manage.py createsuperuser",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }, {
+      "label": "Make migrations to DB",
+      "type": "shell",
+      "command": "./src/manage.py makemigrations",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }, {
+      "label": "Open Django shell (python)",
+      "type": "shell",
+      "command": "./src/manage.py shell",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }, {
+      "label": "Remove all data from DB (flush)",
+      "type": "shell",
+      "command": "./src/manage.py flush --noinput",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }, 
+    {
+      "label": "Create new app (python)",
+      "type": "shell",
+      "command": "./src/manage.py startapp ${input:appName}",
+      // "args": [
+      //   "${input:appName}"
+      // ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+    
+  ],
+  "inputs": [
+    {
+      "id": "appName",
+      "type": "promptString",
+      "description": "Enter app name:"
+    }
+  ]
+  }

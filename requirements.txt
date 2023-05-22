@@ -1,0 +1,9 @@
+django==4.2
+celery==5.2.1
+django-redis==5.2
+channels==4.0.0
+coverage
+pytest-django
+psycopg2
+python-dotenv
+django-environ

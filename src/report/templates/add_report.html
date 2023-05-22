@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add Report{% endblock title %}
+
+
+{% block content %}
+    <h1>Add Report</h1>
+    <p class="text-cyan-400">Report using photo or cite the conversation</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex items-center justify-between">
+            <table id="demography-table">
+                {{ form.as_table }}
+            </table>
+            {% if formset%}
+            {{ formset.management_form }}
+            <div id="report-form-list">
+                {% for form in formset %}
+                <div id='player-entry-form-0' class='report-form'>
+                    {{ form.as_div }}
+                </div>
+                {% endfor %}
+            </div>
+            <button id="report-add-button" class="border-spacing-1 border rounded-md p-3 hover:bg-slate-500 transition-colors" type="button">Add</button>     
+            <div id="report-form-empty" class="hidden">
+                {{ formset.empty_form.as_div }}
+            </div>
+            {% endif %}
+            <button class="border-spacing-1 border rounded-md p-3 hover:bg-slate-500 transition-colors" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var addButton = document.getElementById('report-add-button');
+        var formList = document.getElementById('report-form-list');
+        var totalForms = document.getElementById('id_player_entries-TOTAL_FORMS');
+        var reportForm = document.getElementsByClassName('report-form')
+        const reportEmpty = document.getElementById('report-form-empty');
+        addButton.addEventListener('click', cloneMore);
+        function cloneMore(e) {
+            if (e)
+            e.preventDefault();
+            let currentCount = reportForm.length;
+            var newElement = reportEmpty.cloneNode(true);
+            const formRegex = RegExp('__prefix__', 'g');
+
+            console.log('clicked');
+            newElement.setAttribute('class', 'report-form');
+            newElement.classList.remove('hidden');
+            newElement.setAttribute('id', `player-entry-form-${currentCount}`);
+            newElement.innerHTML = newElement.innerHTML.replace(formRegex, currentCount);
+            console.log(newElement);
+            totalForms.setAttribute('value', currentCount + 1);
+            formList.appendChild(newElement);
+        }
+        
+    </script>
+{% endblock scripts %}

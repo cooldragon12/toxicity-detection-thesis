@@ -1,0 +1,66 @@
+{
+	"name": "chat-emotion-app",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [8000, 5432, 6379],
+	"portsAttributes": {
+		"8000": {"label": "Django port", "onAutoForward": "notify"},
+		"5432": {"label": "PostgreSQL port", "onAutoForward": "silent"},
+        "6379": {"label": "Redis port", "onAutoForward": "silent"}
+	},
+	
+	"customizations": {
+		
+		"vscode": {
+			
+			"settings": {
+				"sqltools.connections": [
+					{
+						"name": "Container database",
+						"driver": "PostgreSQL",
+						"previewLimit": 50,
+						"server": "localhost",
+						"port": 5432,
+						"database": "app",
+						"username": "app_user",
+						"password": "app_password"
+					}
+				],
+				"taskExplorer.enabledTasks": {"python": false},
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.enabled": true,
+				"python.testing.pytestEnabled": true,
+				"python.testing.unittestEnabled": false,
+				"[python]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.fixAll": true
+					},
+					"editor.defaultFormatter": "ms-python.black-formatter"
+				},
+				"python.formatting.provider": "black",
+				"files.exclude": {
+					"**/*.coverage": true,
+					".ruff_cache": true,
+					".pytest_cache": true
+				}
+			},
+
+			
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.black-formatter",
+				"charliermarsh.ruff",
+				"ms-azuretools.vscode-bicep",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg",
+				"spmeesseman.vscode-taskexplorer"
+			]
+		}
+	},
+	"postCreateCommand": "pip install -r requirements-dev.txt && pre-commit install",
+
+	"remoteUser": "vscode"
+}
