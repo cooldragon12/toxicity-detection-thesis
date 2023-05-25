@@ -167,5 +167,7 @@ TAILWIND_CSS_PATH = '/static/css/dist/styles.css'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+if DEBUG:
+    NPM_BIN_PATH="/home/codespace/nvm/current/bin/npm"
+else:
+    NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
