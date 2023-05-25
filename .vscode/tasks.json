@@ -4,7 +4,7 @@
       {
       "label": "Apply migrations to DB",
       "type": "shell",
-      "command": "./src/manage.py migrate",
+      "command": "py ./src/manage.py migrate",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -60,7 +60,7 @@
     {
       "label": "Create new app (python)",
       "type": "shell",
-      "command": "./src/manage.py startapp ${input:appName}",
+      "command": "py src/manage.py startapp ${input:appName}",
       // "args": [
       //   "${input:appName}"
       // ],
@@ -68,7 +68,7 @@
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
-      }
+      },
     }
     
   ],

@@ -9,12 +9,12 @@ Before executing the program in the development environment and for continuous C
 
 Install Tailwind CSS by running the following command:
 
-```
+```bash
 python manage.py tailwind install
 ```
 Start the Tailwind CSS auto-update feature by running the command:
 
-```
+```bash
 python manage.py tailwind start
 ```
 ## Getting Started
@@ -22,26 +22,26 @@ To get started with the project, follow the steps below:
 
 Clone the repository:
 
-bash
-Copy code
-git clone [repository_url]
+```bash
+git clone https://github.com/cooldragon12/Thesis-ToxicityDetection.git
+```
 Install the required dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 Apply the migrations to the current database:
 
-```
+```bash
 python manage.py makemigrations
 ```
-```
+```bash
 python manage.py migrate
 ```
 Start the development server:
 
 
-```
+```bash
 python manage.py runserver
 ```
 Access the application in your web browser at http://localhost:8000.
