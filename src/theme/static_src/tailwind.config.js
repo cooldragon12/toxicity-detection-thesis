@@ -48,10 +48,14 @@ module.exports = {
             lg: '976px',
             xl: '1440px',
           },
-        color: {
-            
-        },
         extend: {
+            colors: {
+                  primary: '#FD4556',
+                  secondary: '#BD3944',
+                  text:'#000000',
+                  accent: '#53212B',
+                  background_cc:'#FFFBF5'
+              },
             
         },
     },

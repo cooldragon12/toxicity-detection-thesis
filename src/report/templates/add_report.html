@@ -6,16 +6,15 @@
 {% block content %}
     <h1>Add Report</h1>
     <p class="text-cyan-400">Report using photo or cite the conversation</p>
-
     <form method="post">
         {% csrf_token %}
         <div class="flex items-center justify-between">
-            <table id="demography-table">
-                {{ form.as_table }}
-            </table>
+            <div id="demography-table">
+                {{ form.as_div }}
+            </div>
             {% if formset%}
             {{ formset.management_form }}
-            <div id="report-form-list">
+            <div id="report-form-list" class="">
                 {% for form in formset %}
                 <div id='player-entry-form-0' class='report-form'>
                     {{ form.as_div }}
@@ -27,7 +26,9 @@
                 {{ formset.empty_form.as_div }}
             </div>
             {% endif %}
-            <button class="border-spacing-1 border rounded-md p-3 hover:bg-slate-500 transition-colors" type="submit">Submit</button>
+        </div>
+        <div id="button-section" class="fixed bottom-5 right-9 flex justify-between items-center px-2">
+            <button class=" border-spacing-1 bg-primary border rounded-md p-3 hover:bg-accent transition-colors" type="submit">Submit</button>
         </div>
     </form>
 {% endblock %}
