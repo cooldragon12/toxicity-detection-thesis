@@ -17,19 +17,30 @@ class ReportView(CreateView):
         context = super().get_context_data(**kwargs)
         context['formset'] = EntryFormSet()
         return context
+    
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         form = self.get_form()
         formset = EntryFormSet(self.request.POST, self.request.FILES)
         if form.is_valid() and formset.is_valid():
             return self.form_valid(form, formset)
         else:
-            return self.form_invalid(form)
+            return self.form_invalid(form, formset)
     
     def form_valid(self, form: BaseModelForm, formset:Type[BaseInlineFormSet]) -> HttpResponse:
         with transaction.atomic():
-            objects = form.save()
+            self.objects = form.save()
             for forms in formset:
-                forms.instance.player_id = objects
-                forms.save()
+                try:
+                    forms.instance.player_id = self.objects
+                    forms.save()
+                    transaction.on_commit(lambda: forms.instance.save())
+                except Exception as e:
+                    print(e)
+                    transaction.set_rollback(True)
+                    break
+
         return super().form_valid(form)
+
+    def form_invalid(self, form: BaseModelForm, formset) -> HttpResponse:
+        return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
