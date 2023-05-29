@@ -8,6 +8,20 @@
         {% tailwind_css %}
     </head>
     <body>
+        <nav class=" h-[8%] w-[100%] flex justify-between items-center px-5 backdrop-blur-sm backdrop-brightness-110 fixed z-50">
+            <div class="flex items-center">
+                LOGO
+            </div> 
+            <div class="flex items-center gap-5">
+                <a href="">Home</a>
+                <a href="">About</a>
+            </div>
+            {% comment %} <div class="absolute w-[100%] h-[100%] blur-md z-10"></div> {% endcomment %}
+            {% comment %} <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul> {% endcomment %}
+        </nav>
         {% block content %}
         {% endblock content %}
     </body>
