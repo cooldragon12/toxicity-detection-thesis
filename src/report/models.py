@@ -7,18 +7,20 @@ from .validators import validate_username_tag
 # Create your models here.
 class PlayerDemography(models.Model):
     email = models.EmailField(max_length=254)
-    first_name = models.CharField(max_length=50,null=True, blank=True)
-    last_name = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
     gender = models.CharField(max_length=10)
     age = models.IntegerField()
     country =CountryField()
     province = models.CharField(max_length=50)
-    ethnicity = models.CharField(max_length=50)
     username = models.CharField(max_length=50, validators=[validate_username_tag])
     average_hours = models.IntegerField(verbose_name='How many hours do you play on average?')
     frequency = models.IntegerField(verbose_name='How often do you play?')
     in_game_rank = models.CharField(max_length=50, verbose_name='What is your in-game rank?')
     often_server = models.CharField(max_length=50, verbose_name='In which server do you play the most?')
+
+    @property
+    def report_entries_count(self):
+        return self.player_entries.count()
     def __str__(self) -> str:
         return self.username
     class Meta:

@@ -4,51 +4,152 @@
 
 
 {% block content %}
+<div class="flex flex-col justify-center items-center">
+
     <h1>Add Report</h1>
     <p class="text-text">Report using photo or cite the conversation</p>
-    <form method="post" class="flex justify-center p-6 ">
+    
+    <form method="post" class="flex flex-col justify-center items-center w-[200vw]">
         {% csrf_token %}
-        <div class="flex flex-wrap items-center justify-center">
-            <div id="demography-form" 
-                class="
-                bg-white 
-                shadow-lg 
-                rounded-md 
-                grid grid-cols-2 
-                w-[40vw]">
-                {% for input in form %}
+        <div class="flex flex-wrap items-center justify-center p-6 rounded-md shadow-md w-[30vw] h-[60vh]">
+            <div id="demography-form" class="flex flex-col ">
+                {% comment %} {% for input in form %} {% endcomment %}
+                <div class="flex gap-3">
                     <div class="input_container">
-                        <label for="{{ input.id_for_label }}" >{{ input.label }}</label>
-                        
-                        {{ input }}
-                        {{ input.errors }}
+                        {% comment %} Name Input {% endcomment %}
+                        <label class="input-text-label" for="{{ form.name.id_for_label }}" >{{ form.name.label }} (Optional)</label>
+                        {{ form.name }}
+                        {{ form.name.errors }}
                     </div>
-                {% endfor %}
+                    <div class="input_container">
+                        {% comment %} Username Input {% endcomment %}
+                        <label class="input-text-label" for="{{ form.username.id_for_label }}" >IGN</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                </div>
+                
+                <div class="input_container">
+                    {% comment %} Email input here {% endcomment %}
+                    <label class="input-text-label" for="{{ form.email.id_for_label }}" >E-mail</label>
+                    
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+                
+                <div class="flex gap-3">
+                    <div class="input_container">
+                        {% comment %} Age input {% endcomment %}
+                        <label class="input-text-label" for="{{ form.age.id_for_label }}" >{{ form.age.label }}</label>
+                        {{ form.age }}
+                        {{ form.age.errors }}
+                    </div>
+                    <div class="input_container flex flex-col">
+                        {{form.gender.label}}
+                        {{form.gender}}
+                    </div>
+                    
+                </div>
+                
+                <div class="input_container flex flex-col">
+                    {% comment %} Country input {% endcomment %}
+                    <label for="{{ form.country.id_for_label }}" >{{ form.country.label }}</label>
+                    {{ form.country }}
+                    {{ form.country.errors }}
+                </div>
+                <div class="input_container">
+                    {% comment %} Province input {% endcomment %}
+                    <label class="input-text-label" for="{{ form.province.id_for_label }}" >{{ form.province.label }}</label>
+                    {{ form.province }}
+                    {{ form.province.errors }}
+                </div>
+                <div class="flex gap-3">
+                    <div class="input_container">
+                        {% comment %} Average hours of gaming input {% endcomment %}
+                        <label  for="{{ form.average_hours.id_for_label }}" >Hourse played per week</label>
+                        {{ form.average_hours }}
+                        {{ form.average_hours.errors }}
+                    </div>
+                    <div class="input_container">
+                        {% comment %} Frequency of play input {% endcomment %}
+                        <label  for="{{ form.frequency.id_for_label }}" >Days played per week</label>
+                        {{ form.frequency }}
+                        {{ form.frequency.errors }}
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="input_container flex flex-col">
+                        {% comment %} Ingame rank input {% endcomment %}
+                        <label  for="{{ form.in_game_rank.id_for_label }}" >In-game rank</label>
+                        {{ form.in_game_rank }}
+                        {{ form.in_game_rank.errors }}
+                    </div>
+                    <div class="input_container flex flex-col">
+                        {% comment %} Often Server input {% endcomment %}
+                        <label  for="{{ form.often_server.id_for_label }}" >Most used Server</label>
+                        {{ form.often_server }}
+                        {{ form.often_server.errors }}
+                    </div>
+                </div>
+                {% comment %} {% endfor %} {% endcomment %}
             </div>
-            {% comment %} {% if formset%}
+           
+        </div>
+        <div class="">
+            {% if formset%}
             {{ formset.management_form }}
-            <div id="report-form-list" class="">
+            <div id="report-form-list" class="flex flex-wrap items-center justify-center p-6 rounded-md shadow-md">
                 {% for form in formset %}
                 <div id='player-entry-form-0' class='report-form'>
-                    {{ form.as_div }}
+                    <div class="input_container">
+                        <label for="{{ form.text.id_for_label }}" >{{ form.text.label }}</label>
+                        {{ form.text }}
+                        {{ form.text.errors }}
+                    </div>
+                    <div class="input_container">
+                        <label class="input-image-label" for="{{ form.screenshot.id_for_label }}" >{{ form.screenshot.label }}</label>
+                        {{ form.screenshot }}
+                        {{ form.screenshot.errors }}
+                    </div>
+                    <div class="input_container">
+                        <label class="input-text-label" for="{{ form.description.id_for_label }}" >{{ form.description.label }}</label>
+                        {{ form.description }}
+                        {{ form.description.errors }}
+                    </div>
                 </div>
                 {% endfor %}
+                <button id="report-add-button" class="border-spacing-1 border rounded-md p-3 hover:bg-slate-500 transition-colors" type="button">Add</button>     
             </div>
-            <button id="report-add-button" class="border-spacing-1 border rounded-md p-3 hover:bg-slate-500 transition-colors" type="button">Add</button>     
             <div id="report-form-empty" class="hidden">
-                {{ formset.empty_form.as_div }}
+                    <div class="input_container">
+                        <label for="{{ formset.empty_form.text.id_for_label }}" >{{ formset.empty_form.text.label }}</label>
+                        {{ formset.empty_form.text }}
+                        {{ formset.empty_form.text.errors }}
+                    </div>
+                    <div class="input_container">
+                        <label class="input-image-label" for="{{ formset.empty_form.screenshot.id_for_label }}" >{{ formset.empty_form.screenshot.label }}</label>
+                        {{ formset.empty_form.screenshot }}
+                        {{ formset.empty_form.screenshot.errors }}
+                    </div>
+                    <div class="input_container">
+                        <label class="input-text-label" for="{{ formset.empty_form.description.id_for_label }}" >{{ formset.empty_form.description.label }}</label>
+                        {{ formset.empty_form.description }}
+                        {{ formset.empty_form.description.errors }}
+                    </div>
+                
             </div>
-            {% endif %} {% endcomment %}
+            {% endif %}
         </div>
         <div id="button-section" class="fixed bottom-5 right-9 flex justify-between items-center px-2">
             <button class=" border-spacing-1 bg-primary border rounded-md p-3 hover:bg-accent transition-colors" type="submit">Submit</button>
         </div>
     </form>
+</div >    
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        var addButton = document.getElementById('report-add-button');
+<script>
+    var addButton = document.getElementById('report-add-button');
         var formList = document.getElementById('report-form-list');
         var totalForms = document.getElementById('id_player_entries-TOTAL_FORMS');
         var reportForm = document.getElementsByClassName('report-form')
@@ -71,5 +172,6 @@
             formList.appendChild(newElement);
         }
         
+        {% comment %} function handlesImageDrag {% endcomment %}
     </script>
 {% endblock scripts %}

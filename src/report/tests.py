@@ -10,8 +10,7 @@ class TestReport(TestCase):
     def test_report_view_post(self):
         response = self.client.post('/report/add/', {
             'email': 'johndel@gmail.com',
-            'first_name': 'John',
-            'last_name': 'Del',
+            'name': 'John Dela Cruz',
             'username': 'johndel#1234',
             'gender':'male',
             'age': 20,
@@ -33,4 +32,12 @@ class TestReport(TestCase):
             'player_entries-0-sentiment': 'Positive'
             }
         )
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 302)
+    def test_report_view_post_invalid(self):
+        response = self.client.post('/report/add/', {
+            'email': 'johnmda',
+            'first_name': 'John',
+            'last_name': 'Del',
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'error')

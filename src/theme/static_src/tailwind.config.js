@@ -74,7 +74,7 @@ module.exports = {
                 '.input_container': {
                     position: 'relative',
                     marginBottom: '1.5rem',
-                    width: '80%',
+                    width: '100%',
                     borderRadius: '0.5rem',
                     
                     '& > input[type=text], > input[type=email], > input[type=number] ':{
@@ -90,10 +90,10 @@ module.exports = {
                         transition: 'all 0.3s ease-in-out',
                         
                     },
-                    '& label':{
+                    '& .input-text-label':{
                         position: 'absolute',
-                        transform: 'translateY(-0.7rem)',
-                        // transform: 'translateY(0.5rem)',
+                        // transform: 'translateY(-0.7rem)',
+                        transform: 'translateY(0.5rem)',
                         fontSize: '1rem',
                         color: 'grey',
                         padding: '0 0.25rem',
@@ -102,7 +102,7 @@ module.exports = {
                         cursor: 'text',
                         
                     },
-                    '&:focus-within label':{
+                    '&:focus-within .input-text-label':{
                         transform: 'translateY(-0.7rem)',
                         fontSize: '0.8rem',
                         color: '#FD4556',

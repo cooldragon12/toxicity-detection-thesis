@@ -45,14 +45,14 @@ class PlayerDemographyForm(forms.ModelForm):
     gender = forms.ChoiceField(widget=forms.RadioSelect,choices=GENDER_CHOICES)
     class Meta:
         model = PlayerDemography
-        fields = ['email','first_name','last_name','gender','age', 'country','province','ethnicity','username','average_hours','frequency','in_game_rank','often_server']
+        fields = ['email','name','gender','age', 'country','province','username','average_hours','frequency','in_game_rank','often_server']
         
         
 class EntryForm(forms.BaseInlineFormSet):
     class Meta:
         model = Entry
-        fields = ['text','screenshot','description','emotion','toxicity','sentiment']
+        fields = ['text','screenshot','description']
         widgets = {
             'id': forms.HiddenInput(),
         }
-EntryFormSet = inlineformset_factory(PlayerDemography, Entry, exclude=['id'],extra=1, can_delete=False)
+EntryFormSet = inlineformset_factory(PlayerDemography, Entry, exclude=['id', 'toxicity', 'sentiment','emotion'],extra=1, can_delete=False)
