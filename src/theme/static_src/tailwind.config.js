@@ -73,7 +73,7 @@ module.exports = {
             addComponents({
                 '.input_container': {
                     position: 'relative',
-                    marginBottom: '1rem',
+                    margin: '0.5rem',
                     width: '100%',
                     
                     '& input, & select':{
@@ -144,6 +144,8 @@ module.exports = {
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    margin: '0.5rem',
+
                     // width: '100%',
                     borderRadius: '0.5rem',
                     border: '2px dashed #ccc',
@@ -196,7 +198,15 @@ module.exports = {
                           }
                         
                     },
-                }
+                },
+                '.form_visible':{
+                    left: '0%',
+                    opacity: '1',
+                },
+                '.form_hidden':{
+                    left: '-100%',
+                    opacity: '0',
+                },
 
             })
         })
