@@ -73,45 +73,130 @@ module.exports = {
             addComponents({
                 '.input_container': {
                     position: 'relative',
-                    marginBottom: '1.5rem',
+                    marginBottom: '1rem',
                     width: '100%',
-                    borderRadius: '0.5rem',
                     
-                    '& > input[type=text], > input[type=email], > input[type=number] ':{
-                        border: 'none',
-                        borderBottom: '0.122em solid #BD3944',
-                        height: '2rem',
+                    '& input, & select':{
                         width: '100%',
-                        fontSize: '1.0625rem',
-                        paddingLeft: '0.6rem',
-                        lineHeight: '147.6%',
-                        paddingTop: '0.825rem',
-                        paddingBottom: '0.5rem',
+                        border: '2px solid #ccc',
+                        padding: '0.5rem',
                         transition: 'all 0.3s ease-in-out',
-                        
+                        borderRadius: '0.5rem',
+                        outline: 'none',
+                        fontSize: '1em',
+                        '&:focus, &:valid':{
+                            boxShadow: 'none',
+                            borderColor: '#FD4556',
+                            '+ .input-text-label':{
+                                transform: 'translate(0.5rem,-1rem)',
+                                fontSize: '0.8rem',
+                                color: '#FD4556',
+                                padding: '0 0.25rem',
+                                backgroundColor: '#ffff',
+                                letterSpacing: '0.1rem',
+                                padding: '0 0.5rem',
+                                borderRight: '0.122em solid #BD3944',
+                                borderLeft: '0.122em solid #BD3944',
+                            }
+                        }
+                    },
+                    '& input[type=radio]':{
+                        color: '#BD3944',
+                        borderRadius: '100%',
+                        width: '1rem',
+                        '&:hover':{
+                            cursor: 'pointer',
+                            borderColor: '#FD4556',
+                        }
                     },
                     '& .input-text-label':{
                         position: 'absolute',
                         // transform: 'translateY(-0.7rem)',
-                        transform: 'translateY(0.5rem)',
+                        top: '0.5rem',
+                        left: '0.5rem',
                         fontSize: '1rem',
-                        color: 'grey',
+                        color: 'gray',
                         padding: '0 0.25rem',
                         transition: 'all 0.3s ease-in-out',
                         userSelect: 'none',
                         cursor: 'text',
-                        
+                        border: 'none',
                     },
-                    '&:focus-within .input-text-label':{
-                        transform: 'translateY(-0.7rem)',
-                        fontSize: '0.8rem',
-                        color: '#FD4556',
-                        padding: '0 0.25rem',
-                        backgroundColor: '#ffff',
-                    },
+
+                    // '&:focus,&:valid': {
+                    //     borderColor: '#FD4556',
+                    //     '.input-text-label':{
+                    //     transform: 'translate(0.5rem,-0.7rem)',
+                    //     fontSize: '0.8rem',
+                    //     color: '#FD4556',
+                    //     padding: '0 0.25rem',
+                    //     backgroundColor: '#ffff',
+                    //     letterSpacing: '0.1rem',
+                    //     padding: '0 0.5rem',
+                    //     borderRight: '0.122em solid #BD3944',
+                    //     borderLeft: '0.122em solid #BD3944',
+                    // }},
                     
                 },
-                
+                '.input_container_dropdown': {
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    // width: '100%',
+                    borderRadius: '0.5rem',
+                    border: '2px dashed #ccc',
+                    width: '300px',
+                    height: '200px',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    fontSize: '18px',
+                    transition: 'all 0.3s ease-in-out',
+                    '& .drop-zone-label':{
+                        fontWeight: 'bold',
+                        color: '#999',
+                        userSelect: 'none',
+                        
+                    },
+                    '& input':{
+                        display: 'none'
+                    },
+                    '&:hover':{
+                        cursor: 'pointer',
+                        borderColor: '#666'
+                    },
+                    '&:hover .drop-zone-label':{
+                        color: '#666',
+                        cursor: 'pointer',
+
+                    },
+                    '&.drop-zone-active':{
+                        borderColor: '#FD4556',
+                        backgroundColor: '#ffff',
+                        
+                    },
+                    '& drop-zone-preview':{
+                        position: 'absolute',
+                        top: '0',
+                        left: '0',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        borderRadius: '0.5rem',
+                        border: '2px dashed #ccc',
+                        '& .drop-zone__image-preview': {
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                          },
+                        
+                        '& .drop-zone__image-preview img': {
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                          }
+                        
+                    },
+                }
 
             })
         })

@@ -11,9 +11,9 @@
     <div class="bg-secondary fixed w-[110%] h-[13%] left-[-2rem] top-20 rotate-[1.5deg] z-20 flex justify-center text-center items-center">
         <h1 class="text-white font-bold text-[3.5em] subpixel-antialiased">Survey Form</h1>
     </div>
-    <form method="post" class="flex justify-between h-fit pt-[13%]">
+    <form method="post" class="flex justify-between pt-[12%]">
         {% csrf_token %}
-        <div class="flex justify-between h-[100%]">
+        <div class="flex justify-center items-center h-[100%] w-[100%] space-x-7">
             <div class="flex flex-wrap items-center justify-center m-6 rounded-md shadow-md w-[30vw] ">
                 <div id="demography-form" class="flex flex-col p-6">
                     <div class="flex flex-col my-3 justify-center text-center">
@@ -23,36 +23,40 @@
                     <div class="flex gap-3">
                         <div class="input_container">
                             {% comment %} Name Input {% endcomment %}
-                            <label class="input-text-label" for="{{ form.name.id_for_label }}" >{{ form.name.label }} (Optional)</label>
                             {{ form.name }}
+                            <label class="input-text-label" for="{{ form.name.id_for_label }}" >{{ form.name.label }} (Optional)</label>
                             {{ form.name.errors }}
                         </div>
                         <div class="input_container">
                             {% comment %} Username Input {% endcomment %}
-                            <label class="input-text-label" for="{{ form.username.id_for_label }}" >IGN</label>
                             {{ form.username }}
+                            <label class="input-text-label" for="{{ form.username.id_for_label }}" >IGN (username#tag)</label>
                             {{ form.username.errors }}
                         </div>
                     </div>
                     
                     <div class="input_container">
                         {% comment %} Email input here {% endcomment %}
-                        <label class="input-text-label" for="{{ form.email.id_for_label }}" >E-mail</label>
                         
                         {{ form.email }}
+                        <label class="input-text-label" for="{{ form.email.id_for_label }}" >E-mail</label>
                         {{ form.email.errors }}
                     </div>
                     
                     <div class="flex gap-3">
-                        <div class="input_container">
-                            {% comment %} Age input {% endcomment %}
-                            <label class="input-text-label" for="{{ form.age.id_for_label }}" >{{ form.age.label }}</label>
-                            {{ form.age }}
-                            {{ form.age.errors }}
-                        </div>
+                      
+                            <div class="input_container">
+                                {% comment %} Age input {% endcomment %}
+                                {{ form.age }}
+                                <label class="input-text-label" for="{{ form.age.id_for_label }}" >{{ form.age.label }}</label>
+                                {{ form.age.errors }}
+                            </div>
+                        
                         <div class="input_container flex flex-col">
                             {{form.gender.label}}
                             {{form.gender}}
+                            {{form.gender.errors}}
+
                         </div>
                         
                     </div>
@@ -65,8 +69,8 @@
                     </div>
                     <div class="input_container">
                         {% comment %} Province input {% endcomment %}
-                        <label class="input-text-label" for="{{ form.province.id_for_label }}" >{{ form.province.label }}</label>
                         {{ form.province }}
+                        <label class="input-text-label" for="{{ form.province.id_for_label }}" >{{ form.province.label }}</label>
                         {{ form.province.errors }}
                     </div>
                     <div class="flex gap-3">
@@ -99,13 +103,15 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center">
-                {% comment %} <div class="bg-[url({% static "theme/fade.jpg" %})]"> {% endcomment %}
-
+            <div class="flex justify-center items-center flex-col m-8">
+                <div>
+                    <div class=" w-[100%] h-[100%] m-7">
+                        <img src="{% static 'images/fade.jpg' %}" alt="" width="800" class="object-contain">
+                    </div>
                 </div>
-                <div class="">
-                    <p>PLEASE MAKE SURE TO ENTER IGN AND CONTACT DETAILS FOR THE RAFFLE</p>
-                </div>
+                    <div>
+                        <p class="tracking-wider">PLEASE MAKE SURE TO ENTER IGN AND CONTACT DETAILS FOR THE RAFFLE</p>
+                    </div>
             </div>
          </div>
         {% comment %} <div class="flex flex-wrap items-center justify-center p-6 rounded-md shadow-md w-[30vw] h-[60vh]">
@@ -156,7 +162,7 @@
             {% endif %}
         </div> {% endcomment %}
         <div id="button-section" class="fixed bottom-5 right-9 flex justify-between items-center px-2">
-            <button class=" border-spacing-1 bg-primary border rounded-md p-3 hover:bg-accent transition-colors" type="submit">Submit</button>
+            <button class=" border-spacing-1 text-white bg-primary border rounded-md p-3 hover:bg-accent transition-colors" type="submit">Submit</button>
         </div>
     </form>
 </div >    
