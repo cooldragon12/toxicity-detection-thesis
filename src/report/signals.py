@@ -9,7 +9,9 @@ def create_report(sender, instance, created, **kwargs):
         instance.screenshot.name = f'{instance.id}.png'
         instance.save()
         from .tasks import process_image
+        print(instance.screenshot.path)
         data = process_image(instance.screenshot.path)
+
         with transaction.atomic():
             try:
                 for key, value in enumerate(data):

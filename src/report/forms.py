@@ -47,12 +47,27 @@ class PlayerDemographyForm(forms.ModelForm):
         model = PlayerDemography
         fields = ['email','name','gender','age', 'country','province','username','average_hours','frequency','in_game_rank','often_server']
         
-        
-class EntryForm(forms.BaseInlineFormSet):
+class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
         fields = ['text','screenshot','description']
         widgets = {
             'id': forms.HiddenInput(),
         }
-EntryFormSet = inlineformset_factory(PlayerDemography, Entry, exclude=['id', 'toxicity', 'sentiment','emotion'],extra=1, can_delete=False)
+class EntryFormset(forms.BaseInlineFormSet):
+    def clean(self):
+        super().clean()
+        any_field_filled = False
+        for form in self.forms:
+            screenshot = form.cleaned_data.get('screenshot')
+            text = form.cleaned_data.get('text')
+            print(screenshot)
+            if  screenshot or text :
+                any_field_filled = True
+                break
+        
+
+        if any_field_filled :
+            raise forms.ValidationError("At least one field must be filled.")
+
+EntryFormSet = inlineformset_factory(PlayerDemography, Entry,form=EntryForm,formset=EntryFormset, extra=1, can_delete=False, validate_min=1)

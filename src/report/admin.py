@@ -17,4 +17,4 @@ class PlayerDemographyAdmin(admin.ModelAdmin):
 class EntryAdmin(admin.ModelAdmin):
     model = Entry
     list_display = ['id', 'date_created', 'player_id', 'text', 'emotion', 'toxicity', 'sentiment']
-    readonly_fields = ['text', 'screenshot']
+    # readonly_fields = ['text']

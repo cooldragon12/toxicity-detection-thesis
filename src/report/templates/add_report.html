@@ -11,7 +11,9 @@
     <div class="bg-secondary fixed w-[110%] h-[13%] left-[-2rem] top-20 rotate-[1.5deg] z-20 flex justify-center text-center items-center">
         <h1 class="text-white font-bold text-[3.5em] subpixel-antialiased">Survey Form</h1>
     </div>
-    <form method="post" class="flex justify-between w-[100%] h-[100%] overflow-hidden relative">
+    <form id="entry_form" method="post" enctype="multipart/form-data" class="flex justify-between w-[100%] h-[100%] overflow-hidden relative">
+        {{form.errors}}
+        
         {% csrf_token %}
         {% comment %} Form 1 {% endcomment %}
         <div id="form-player-info"  class="form_visible flex justify-center items-center h-[100%] w-[100%] space-x-7 transition-all  absolute">
@@ -132,7 +134,7 @@
                     <h2>Enter text chat or Upload Screenshot</h2>
                     <div class="input_container_dropdown">
                         <label class="drop-zone-label" for="{{ form.screenshot.id_for_label }}" >{{ form.screenshot.label }}</label>
-                        <input type="file" name="screenshot" accept="image/*" class="drop-zone-input" id="{{ form.screenshot.id_for_label }}">
+                        <input type="file" name="{{ form.screenshot.id_for_label }}" accept="image/*" class="drop-zone-input" id="{{ form.screenshot.id_for_label }}">
                         {{ form.screenshot.errors }}
                         <div class="drop-zone-preview"></div>
                     </div>
@@ -154,7 +156,7 @@
                     <h2>Enter text chat or Upload Screenshot</h2>
                     <div class="input_container_dropdown" for="{{ formset.empty_form.screenshot.id_for_label }}">
                         <label class="drop-zone-label" for="{{ formset.empty_form.screenshot.id_for_label }}" >{{ formset.empty_form.screenshot.label }}</label>
-                        <input type="file" name="screenshot" accept="image/*" class="drop-zone-input" id="{{ formset.empty_form.screenshot.id_for_label }}">
+                        <input type="file" name="{{ formset.empty_form.screenshot.id_for_label }}" accept="image/*" class="drop-zone-input" id="{{ formset.empty_form.screenshot.id_for_label }}">
                         {{ formset.empty_form.screenshot.errors }}
                         <div class="drop-zone-preview"></div>
                     </div>

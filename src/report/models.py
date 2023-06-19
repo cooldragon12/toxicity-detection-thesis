@@ -31,7 +31,7 @@ class Entry(models.Model):
         
         Reference: https://zindilis.com/posts/hex-primary-key-in-django-model/
         """
-        possible = hexlify(os.urandom(4))
+        possible = hexlify(os.urandom(4)).decode()
         while True:
             try:
                 Entry.objects.get(id=possible)
@@ -40,7 +40,7 @@ class Entry(models.Model):
     id = models.CharField(max_length=8, primary_key=True, default=generate_id, editable=False)
     player_id = models.ForeignKey(to=PlayerDemography, on_delete=models.CASCADE, related_name='player_entries')
     date_created = models.DateField(auto_now_add=True)
-    text = models.CharField(max_length=1000)
+    text = models.CharField(max_length=1000, null=True, blank=True)
     screenshot = models.ImageField(upload_to='chat_screenshots', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     emotion = models.CharField(max_length=50, null=True, blank=True)
