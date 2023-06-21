@@ -20,5 +20,14 @@ class PlayerDemographyAdmin(admin.ModelAdmin):
 @admin.register(Entry)
 class EntryAdmin(admin.ModelAdmin):
     model = Entry
-    list_display = ["id", "date_created", "player_id", "text", "emotion", "toxicity", "sentiment"]
-    # readonly_fields = ['text']
+    list_display = ["id", "date_created", "player_id", "is_text", "is_screenshot", "emotion", "toxicity", "sentiment"]
+
+    def is_screenshot(self, obj):
+        if obj.screenshot is not None:
+            return "✅"
+        return "❌"
+
+    def is_text(self, obj):
+        if obj.text is not None:
+            return "✅"
+        return "❌"
