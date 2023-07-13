@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-!lfgghno)&_+@pl4t9tn3ipw0^@-zhyw_@*tbddm)9=l4suipg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 
 
 # Application definition
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "django_browser_reload",
     "report",
     "authuser",
-    # 'chat',
     "api",
 ]
 
@@ -101,10 +100,10 @@ DATABASES = {
     #         'sslrootcert': os.path.join(BASE_DIR, 'ssl', 'prod-ca-2021.crt'),
     #     }
     # }
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
 }
 
 
@@ -126,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "authuser.User"
+# AUTH_USER_MODEL = "authuser.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

@@ -8,7 +8,7 @@
 <div class="flex flex-col justify-center relative h-[100vh] ">
 
     
-    <div class="bg-secondary fixed w-[110%] h-[13%] left-[-2rem] top-20 rotate-[1.5deg] z-20 flex justify-center text-center items-center">
+    <div class="bg-secondary fixed w-[110%] h-[13%] left-[-2rem] top-20 rotate-[0.5deg]  lg:rotate-[1.5deg] z-20 flex justify-center text-center items-center">
         <h1 class="text-white font-bold text-[3.5em] subpixel-antialiased">Survey Form</h1>
     </div>
     <form id="entry_form" method="post" enctype="multipart/form-data" class="flex justify-between w-[100%] h-[100%] overflow-hidden relative">
@@ -17,7 +17,7 @@
         {% csrf_token %}
         {% comment %} Form 1 {% endcomment %}
         <div id="form-player-info"  class="form_visible flex justify-center items-center h-[100%] w-[100%] space-x-7 transition-all  absolute">
-            <div class="w-[50% flex justify-center items-center]">
+            <div class="w-[50%] flex justify-center items-center">
                 <div class="flex flex-wrap items-center justify-center m-6 rounded-md shadow-md w-[30vw] ">
                     <div id="demography-form" class="flex flex-col p-6">
                         <div class="flex flex-col my-3 justify-center text-center">
@@ -49,12 +49,12 @@
                         
                         <div class="flex gap-3">
                         
-                                <div class="input_container">
+                            <div class="input_container">
                                     {% comment %} Age input {% endcomment %}
                                     {{ form.age }}
-                                    <label class="input-text-label" for="{{ form.age.id_for_label }}" >{{ form.age.label }}</label>
+                                <label class="input-text-label" for="{{ form.age.id_for_label }}" >{{ form.age.label }}</label>
                                     {{ form.age.errors }}
-                                </div>
+                            </div>
                             
                             <div class="input_container flex flex-col">
                                 {{form.gender.label}}

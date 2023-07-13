@@ -1,31 +1,26 @@
 {
- "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
- "remote.portsAttributes": {
-  "5000": {
-   "forwarded": 5000
-  },
-  "8000": {
-   "label": "Application",
-   "onAutoForward": "notify"
-  }
- },
- "python.testing.unittestArgs": ["-v", "-s", "./src", "*test*.py"],
- "python.testing.pytestEnabled": false,
- "python.testing.unittestEnabled": true,
- 
- "editor.formatOnSave": true,
- "editor.defaultFormatter": null,
- "python.formatting.provider": "none",
-
- "[python]": {
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.formatOnType": true,
-    "editor.wordBasedSuggestions": false,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.activeStateToolPath": "state",
+    "jupyter.notebookFileRoot": "${fileDirname}",
+    "remote.portsAttributes": {
+        "5000": {
+            "forwarded": 5000
+        },
+        "8000": {
+            "label": "Application",
+            "onAutoForward": "notify"
+        }
     },
-    "editor.defaultFormatter": "ms-python.black-formatter"
-},
-"python.analysis.typeCheckingMode": "basic"
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": null,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
 }
