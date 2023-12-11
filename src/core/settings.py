@@ -17,20 +17,23 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!lfgghno)&_+@pl4t9tn3ipw0^@-zhyw_@*tbddm)9=l4suipg"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG")
 
 # ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
-CORS_ALLOWED_ORIGINS = ["https://toxicity-emotion-classifier.vercel.app", "http://localhost:3000"]
+ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS")]
+print(ALLOWED_HOSTS)
+CORS_ALLOWED_ORIGINS = [os.getenv("DJANGO_CORS_ORIGIN_WHITELIST")]
 # Model Dir
 MODEL_DIR = os.path.join(BASE_DIR, "api/model/bi_lstm_bert_model_30_70_adam_0-69_42_21_l1l2_0-085_0-09_each.h5")
 # Application definition
