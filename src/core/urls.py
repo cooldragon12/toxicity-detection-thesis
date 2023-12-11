@@ -14,22 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings  
-from django.conf.urls.static import static  
+from django.urls import include, path
+
 urlpatterns = [
-    path('', include('about.urls')),
-    path('report/', include('report.urls')),
-    path('chat/', include('chat.urls')),
-    path('api/', include('api.urls')),
-    path('admin/', admin.site.urls),
-    path("__reload__/", include("django_browser_reload.urls")),
+    # path("report/", include("report.urls")),
+    path("api/", include("api.urls")),
+    # path("admin/", admin.site.urls),
+    # path("__reload__/", include("django_browser_reload.urls")),
 ]
 
-urlpatterns_ws = [
-    path('chat/', include('chat.routings')),
-]
 
-if settings.DEBUG:  
-        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

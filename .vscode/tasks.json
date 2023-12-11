@@ -1,10 +1,10 @@
 {
-    "version": "2.0.0",
-    "tasks": [ 
+  "version": "2.0.0",
+  "tasks": [ 
       {
       "label": "Apply migrations to DB",
-      "type": "shell",
-      "command": "py ./src/manage.py migrate",
+      "type": "process",
+      "command": "source .venv/Scripts/activate && py ./src/manage.py migrate",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -14,7 +14,7 @@
     }, {
       "label": "Load seed data to DB",
       "type": "shell",
-      "command": "./src/manage.py loaddata seed_data.json",
+      "command": "source .venv/Scripts/activate && ./src/manage.py loaddata seed_data.json",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -23,7 +23,7 @@
     }, {
       "label": "Create super user (admin)",
       "type": "shell",
-      "command": "./src/manage.py createsuperuser",
+      "command": "source .venv/Scripts/activate && ./src/manage.py createsuperuser",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -31,8 +31,8 @@
       }
     }, {
       "label": "Make migrations to DB",
-      "type": "shell",
-      "command": "./src/manage.py makemigrations",
+      "type": "process",
+      "command": "source .venv/Scripts/activate && ./src/manage.py makemigrations",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -41,7 +41,7 @@
     }, {
       "label": "Open Django shell (python)",
       "type": "shell",
-      "command": "./src/manage.py shell",
+      "command": "source .venv/Scripts/activate && ./src/manage.py shell",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -50,7 +50,7 @@
     }, {
       "label": "Remove all data from DB (flush)",
       "type": "shell",
-      "command": "./src/manage.py flush --noinput",
+      "command": "source .venv/Scripts/activate && ./src/manage.py flush --noinput",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -60,23 +60,35 @@
     {
       "label": "Create new app (python)",
       "type": "shell",
-      "command": "py src/manage.py startapp ${input:appName}",
-      // "args": [
-      //   "${input:appName}"
-      // ],
+      "command": "source .venv/Scripts/activate && py src/manage.py startapp ${input:appName}",
+      "args": [
+        "${input:appName}"
+      ],
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "dedicated"
       },
+    },
+    {
+      "label": "Django Test",
+      "type": "shell",
+      "command": "source .venv/Scripts/activate && py src/manage.py test report api",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      
     }
     
   ],
   "inputs": [
-    {
-      "id": "appName",
-      "type": "promptString",
-      "description": "Enter app name:"
-    }
-  ]
-  }
+      {
+        "id": "appName",
+        "type": "promptString",
+        "description": "Enter app name:"
+      }
+  ],
+  
+}
