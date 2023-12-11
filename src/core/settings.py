@@ -13,12 +13,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(os.path.join(BASE_DIR, ".env.prod"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,9 +27,12 @@ SECRET_KEY = "django-insecure-!lfgghno)&_+@pl4t9tn3ipw0^@-zhyw_@*tbddm)9=l4suipg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+# ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-
+CORS_ALLOWED_ORIGINS = ["https://toxicity-emotion-classifier.vercel.app", "http://localhost:3000"]
+# Model Dir
+MODEL_DIR = os.path.join(BASE_DIR, "api/model/bi_lstm_bert_model_30_70_adam_0-69_42_21_l1l2_0-085_0-09_each.h5")
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,11 +43,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "tailwind",
-    "theme",
-    "django_browser_reload",
-    "report",
-    "authuser",
+    # "tailwind",
+    # "theme",
+    # "django_browser_reload",
+    # "report",
+    # "authuser",
     "api",
 ]
 
@@ -59,7 +60,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    # "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -100,10 +102,10 @@ DATABASES = {
     #         'sslrootcert': os.path.join(BASE_DIR, 'ssl', 'prod-ca-2021.crt'),
     #     }
     # }
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
@@ -147,7 +149,7 @@ STATIC_URL = "static/"
 MEDIA_URL = "media/"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -165,12 +167,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # }
 
 # Tailwind settings
-TAILWIND_APP_NAME = "theme"
+# TAILWIND_APP_NAME = "theme"
 
-TAILWIND_CSS_PATH = "/static/css/dist/styles.css"
+# TAILWIND_CSS_PATH = "/static/css/dist/styles.css"
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+# ]
 
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

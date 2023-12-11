@@ -14,8 +14,9 @@ python = "^3.11"
 django = "^4.2.1"
 celery = "^5.2.7"
 redis = "^5.2.0"
-djangochannels = "^4.0.0"
 tensorflow = "^2.5.0"
+transformers = "^4.6.1"
+keras = "^2.4.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
