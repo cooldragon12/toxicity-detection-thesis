@@ -32,9 +32,10 @@ DEBUG = os.getenv("DJANGO_DEBUG") == "True"
 print(type(DEBUG), DEBUG)
 
 # ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
-ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS")]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
 print(ALLOWED_HOSTS)
-CORS_ALLOWED_ORIGINS = [os.getenv("DJANGO_CORS_ORIGIN_WHITELIST")]
+CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ORIGIN_WHITELIST").split(",")
+print(CORS_ALLOWED_ORIGINS)
 # Model Dir
 MODEL_DIR = os.path.join(BASE_DIR, "api/model/bi_lstm_bert_model_30_70_adam_0-69_42_21_l1l2_0-085_0-09_each.h5")
 # Application definition
