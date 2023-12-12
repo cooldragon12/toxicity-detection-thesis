@@ -28,7 +28,8 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DJANGO_DEBUG")
+DEBUG = os.getenv("DJANGO_DEBUG") == "True"
+print(type(DEBUG), DEBUG)
 
 # ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS")]
