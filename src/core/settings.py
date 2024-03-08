@@ -37,7 +37,7 @@ print(ALLOWED_HOSTS)
 CORS_ALLOW_ALL_ORIGINS = True
 # print(CORS_ALLOWED_ORIGINS)
 # Model Dir
-MODEL_DIR = os.path.join(BASE_DIR, "api/model/bi_lstm_bert_model_30_70_adam_0-69_42_21_l1l2_0-085_0-09_each.h5")
+MODEL_DIR = os.path.join(BASE_DIR, "api/model/bi_lstm_bert_model.h5")
 # Application definition
 
 

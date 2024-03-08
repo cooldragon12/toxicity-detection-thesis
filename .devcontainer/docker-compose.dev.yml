@@ -1,65 +1,61 @@
-version: '3.1'
+version: "3.1"
 services:
-  # Django Service
-  app:
-    build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
-      args:
-        IMAGE: python:3.11
-    volumes:
-      - ..:/app/
-    ports:
-      - 8000:8000
-    networks:
-      - chat-emotion-network
-    depends_on:
-      - db
-      - redis
-    env_file:
-      - .env.dev
-  # Posegres Service as Database
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
-    volumes:
-      - db-data:/var/lib/postgresql/data/
-    networks:
-      - chat-emotion-network
-  # Redis Service as Broker
-  redis:
-    image: redis:latest
-    restart: always
-    volumes:
-      - redis-data:/data
-    networks:
-      - chat-emotion-network
-  # Celery Service
-  celery:
-    build:
-      context: ..
-    restart: always
-    volumes:
-      - ..:/app/
-    networks:
-      - chat-emotion-network
-    command: celery -A app.celery worker --loglevel=info
-    depends_on:
-      - db
-      - redis
-      - app
-    env_file:
-      - .env.dev
+ # Django Service
+ app:
+  build:
+   context: ../src
+   args:
+    IMAGE: python:3.11
+  volumes:
+   - ../src:/app/
+  ports:
+   - 8000:8000
+  networks:
+   - chat-emotion-network
+  depends_on:
+   #  - db
+   - redis
+  env_file:
+   - .env.dev
+ # Posegres Service as Database
+ # db:
+ #   image: postgres:latest
+ #   environment:
+ #     POSTGRES_USER: postgres
+ #     POSTGRES_PASSWORD: postgres
+ #     POSTGRES_DB: postgres
+ #   volumes:
+ #     - db-data:/var/lib/postgresql/data/
+ #   networks:
+ #     - chat-emotion-network
+ # Redis Service as Broker
+ redis:
+  image: redis:latest
+  restart: always
+  volumes:
+   - redis-data:/data
+  networks:
+   - chat-emotion-network
+ # Celery Service
+#  celery:
+#   build:
+#    context: ..
+#   restart: always
+#   volumes:
+#    - ..:/app/
+#   networks:
+#    - chat-emotion-network
+#   command: celery -A app.celery worker --loglevel=info
+#   depends_on:
+#    - db
+#    - redis
+#    - app
+#   env_file:
+#    - .env.dev
 
 volumes:
-  db-data:
-  redis-data:
+ #  db-data:
+ redis-data:
 
 networks:
-  chat-emotion-network:
-    
-
-  
+ chat-emotion-network:
